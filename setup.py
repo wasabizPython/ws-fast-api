@@ -1,12 +1,13 @@
 import logging
 from logging.handlers import RotatingFileHandler
+from decouple import config
 
 
 def log(name, log_file, log_format, level=logging.INFO):
     fileHandler = RotatingFileHandler(
         filename=log_file,
-        maxBytes=50 * 1024 * 1024,
-        backupCount=200
+        maxBytes=int(config('LOG_SIZE')),
+        backupCount=int(config('LOG_BACKUP'))
     )
     formatter = logging.Formatter(log_format)
     fileHandler.setFormatter(formatter)
