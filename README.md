@@ -6,8 +6,9 @@ Web Service template by using fast api library
 2. Resource Management
 3. Database Connection
 - MySQl
--- select
--- insert
--- update
+- select
+- insert
+- update
+-------------
 4. Query to external API
 5. Custom Exception
