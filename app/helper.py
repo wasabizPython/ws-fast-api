@@ -6,7 +6,7 @@ from fastapi import Request
 logger = logging.getLogger(config('LOG_NAME'))
 
 
-def visitor(ws_id: str, request: Request, payload: object) -> None:
+def visitor(ws_id: str, request: Request, payload: object = None) -> None:
     """
     Function use to store the visitor request info to logging
     :param ws_id:

@@ -19,13 +19,13 @@ class Database:
         :return:
         """
         try:
-            logger.info(
-                f'{self.ws_id} - established database connection {config("DB_HOST")}:{config("DB_PORT")}')
+            logger.info(f'{self.ws_id} - established database connection {config("DB_HOST")}:{config("DB_PORT")}')
             self.conn = pymysql.connect(
                 host=config("DB_HOST"),
                 port=int(config("DB_PORT")),
                 user=config("DB_USERNAME"),
                 password=config("DB_PASSWORD"),
+                connect_timeout=5,
                 charset='utf8mb4',
                 cursorclass=pymysql.cursors.DictCursor
             )
@@ -59,8 +59,7 @@ class Database:
             logger.info(f"{self.ws_id} - {sql}")
             cursor.execute(sql, value)
             self.conn.commit()
-        logger.info(
-            f"{self.ws_id} - {self.conn.cursor().rowcount} record updated")
+        logger.info(f"{self.ws_id} - {self.conn.cursor().rowcount} record updated")
 
     def insert(self, sql: str, value: [str, tuple]) -> None:
         """
@@ -73,8 +72,7 @@ class Database:
             logger.info(f"{self.ws_id} - {sql}")
             cursor.execute(sql, value)
             self.conn.commit()
-        logger.info(
-            f"{self.ws_id} - {self.conn.cursor().rowcount} record inserted")
+        logger.info(f"{self.ws_id} - {self.conn.cursor().rowcount} record inserted")
 
     def close(self) -> None:
         """
