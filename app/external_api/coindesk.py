@@ -27,7 +27,7 @@ class CoinDesk:
         headers = {}
         payload = {}
         logger.info(f'{self.ws_id} - url: {url}, payload: {payload}, headers: {headers}')
-        response = requests.post(url, json=payload, headers=headers, timeout=self.timeout)
+        response = requests.get(url, data=payload, headers=headers, timeout=self.timeout)
         logger.info(f'{self.ws_id} - status: {response.status_code}')
 
         if response.status_code == 403:
