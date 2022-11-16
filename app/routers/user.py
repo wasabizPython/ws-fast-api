@@ -21,19 +21,6 @@ logger = logging.getLogger(config('LOG_NAME'))
 
 user = APIRouter()
 
-Items = {
-    1: {
-        'name': 'Mike',
-        'role': 'Administrator',
-        'created': '2022-01-01 01:01:00'
-    },
-    2: {
-        'name': 'John',
-        'role': 'Normal',
-        'created': '2022-01-02 11:01:00'
-    }
-}
-
 
 @user.get("/user/get", response_model=GetResponse)
 def user_get(userId: str, request: Request):
