@@ -1,12 +1,12 @@
 # ws-fast-api
-Web Service template by using fast api library
+This is the template for web service by using the fastapi library.
 
 # Features
 1. Token Authentication (Bearer)
 2. Resource Management
 3. Database Connection
 ```html
-MySQl (select, insert, update)
+MySQL (select, insert, update)
 ```
 4. Query to external API
 5. Custom Exception
