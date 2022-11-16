@@ -19,7 +19,8 @@ class Database:
         :return:
         """
         try:
-            logger.info(f'{self.ws_id} - established database connection {config("DB_HOST")}:{config("DB_PORT")}')
+            logger.info(
+                f'{self.ws_id} - established database connection {config("DB_HOST")}:{config("DB_PORT")}')
             self.conn = pymysql.connect(
                 host=config("DB_HOST"),
                 port=int(config("DB_PORT")),
@@ -47,13 +48,19 @@ class Database:
             else:
                 return cursor.fetchone()
 
-    def update(self, sql: str) -> None:
+    def update(self, sql: str, value: [str, tuple]) -> None:
         """
         update database query
+        :param value:
         :param sql:
         :return:
         """
-        pass
+        with self.conn.cursor() as cursor:
+            logger.info(f"{self.ws_id} - {sql}")
+            cursor.execute(sql, value)
+            self.conn.commit()
+        logger.info(
+            f"{self.ws_id} - {self.conn.cursor().rowcount} record updated")
 
     def insert(self, sql: str, value: [str, tuple]) -> None:
         """
@@ -66,7 +73,8 @@ class Database:
             logger.info(f"{self.ws_id} - {sql}")
             cursor.execute(sql, value)
             self.conn.commit()
-        logger.info(f"{self.ws_id} - {self.conn.cursor().rowcount} record inserted")
+        logger.info(
+            f"{self.ws_id} - {self.conn.cursor().rowcount} record inserted")
 
     def close(self) -> None:
         """
